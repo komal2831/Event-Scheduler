@@ -19,10 +19,12 @@ const Page = () => {
     saveEvents(events);
   }, [events]);
 
+   // Function to add any event
   const addEvent = (event: { date: Date; description: string }) => {
     setEvents([...events, event]);
   };
 
+   // Function to edit any event
   const editEvent = (index: number, newDescription: string) => {
     const updatedEvents = events.map((event, i) =>
       i === index ? { ...event, description: newDescription } : event
@@ -30,11 +32,13 @@ const Page = () => {
     setEvents(updatedEvents);
   };
 
+  // Function to delete any event
   const deleteEvent = (index: number) => {
     const updatedEvents = events.filter((_, i) => i !== index);
     setEvents(updatedEvents);
   };
 
+  // method to change Date to schdule new event 
   const handleDateChange = (value: Date | Date[] | null) => {
     if (value instanceof Date) {
       setSelectedDate(value);
@@ -45,6 +49,7 @@ const Page = () => {
 
   return (
     <div>
+      {/* Loaded All components */}
       <CalendarComponent selectedDate={selectedDate as Date} onDateChange={handleDateChange} />
       <EventForm selectedDate={selectedDate as Date} onAddEvent={addEvent} />
       <EventList
