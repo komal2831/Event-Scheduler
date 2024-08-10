@@ -1,11 +1,13 @@
+'use client'
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 import './styles/globals.css';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-// Event Scheduler Futer part
     <html lang="en">
       <body>
-        <div>
+        <Provider store={store}>
           <header>
             <h1>Event Scheduler</h1>
           </header>
@@ -13,8 +15,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <footer>
             <p>&copy; 2024 Event Scheduler</p>
           </footer>
-        </div></body>
+        </Provider>
+      </body>
     </html>
   );
 }
-
