@@ -9,6 +9,13 @@ interface EventFormProps {
   selectedDate: Date;
 }
 
+/**
+ * EventForm component allows users to add events for the selected date.
+ * It includes a textarea for entering the event description and a submit button.
+ * On form submission, the event is dispatched to the Redux store.
+ * 
+ * @param {EventFormProps} props - Contains the selected date for the event.
+ */
 const EventForm: React.FC<EventFormProps> = ({ selectedDate }) => {
   const [description, setDescription] = useState('');
   const dispatch: AppDispatch = useDispatch();

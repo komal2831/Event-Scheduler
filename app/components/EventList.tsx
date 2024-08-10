@@ -2,26 +2,36 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../store/store';
 import { editEvent, deleteEvent } from '../store/eventsSlice';
 import './EventTable.css';
+import { format } from 'date-fns';
 
 interface EventListProps {
   selectedDate: Date;
 }
 
 const EventList: React.FC<EventListProps> = ({ selectedDate }) => {
+  // Retrieve the list of events from the Redux store
   const events = useSelector((state: RootState) => state.events.events);
   const dispatch: AppDispatch = useDispatch();
 
-  // const filteredEvents = events.filter(
-  //   (event) => event.date.toDateString() == selectedDate.toDateString()
-  // );
-
+  // Function to handle editing an event
   const handleEditEvent = (index: number) => {
-    const newDescription = prompt('Edit event:', events[index].description);
-    if (newDescription !== null && newDescription.trim() !== '') {
-      dispatch(editEvent({ index, newDescription }));
+    const event = events[index];
+    const newDescription = prompt('Edit event description:', event.description);
+    const currentDate = format(event.date, 'yyyy-MM-dd');
+    const newDateStr = prompt('Edit event date (YYYY-MM-DD):', currentDate);
+
+    // Validate inputs and dispatch editEvent action if valid
+    if (newDescription !== null && newDescription.trim() !== '' && newDateStr !== null) {
+      const parsedDate = new Date(newDateStr);
+      if (!isNaN(parsedDate.getTime())) {
+        dispatch(editEvent({ index, newDescription, newDate: parsedDate }));
+      } else {
+        alert('Invalid date format. Please use YYYY-MM-DD.');
+      }
     }
   };
 
+  // Function to handle deleting an event
   const handleDeleteEvent = (index: number) => {
     if (confirm('Are you sure you want to delete this event?')) {
       dispatch(deleteEvent(index));
@@ -40,6 +50,7 @@ const EventList: React.FC<EventListProps> = ({ selectedDate }) => {
           <table className="event-table">
             <thead>
               <tr>
+                <th className="description-header">Event Date</th>
                 <th className="description-header">Description</th>
                 <th className="actions-header">Actions</th>
               </tr>
@@ -47,6 +58,7 @@ const EventList: React.FC<EventListProps> = ({ selectedDate }) => {
             <tbody>
               {events.map((event, index) => (
                 <tr key={index}>
+                  <td className="description-cell">{event.date.toLocaleDateString()}</td>
                   <td className="description-cell">{event.description}</td>
                   <td className="actions-cell">
                     <button
