@@ -31,3 +31,41 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Example CSS for responsive design */
+
+/* Mobile Devices (Portrait and Landscape) */
+@media (max-width: 767px) {
+  div {
+    flex-direction: column; 
+  }
+  
+  .child-container {
+    margin-right: 0; 
+    margin-bottom: 1rem;
+  }
+}
+
+/* Tablets and Small Laptops */
+@media (min-width: 768px) and (max-width: 1024px) {
+  div {
+    flex-direction: row;
+  }
+  
+  .child-container {
+    margin-right: 1rem; 
+    margin-bottom: 0; 
+  }
+}
+
+/* Laptops and Larger Screens */
+@media (min-width: 1025px) {
+  div {
+    flex-direction: row; 
+  }
+  
+  .child-container {
+    margin-right: 1rem; 
+    margin-bottom: 1rem; 
+  }
+}
