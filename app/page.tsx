@@ -32,10 +32,37 @@ const Page = () => {
   };
 
   return (
-    <div>
-      <CalendarComponent selectedDate={selectedDate} onDateChange={handleDateChange} />
-      <EventForm selectedDate={selectedDate} />
-      <EventList selectedDate={selectedDate} />
+      <div style={{ 
+      display: 'flex', 
+      flexDirection: 'column', 
+      height: '100vh', 
+      padding: '1rem', 
+      boxSizing: 'border-box' 
+    }}>
+      <div style={{ 
+        display: 'flex', 
+        flexDirection: 'row', 
+        flex: '1', 
+        marginBottom: '1rem', 
+        flexWrap: 'wrap' 
+      }}>
+        <div style={{ 
+          flex: '1', 
+          marginRight: '1rem', 
+          minWidth: '300px', 
+          boxSizing: 'border-box'
+        }}>
+          <CalendarComponent selectedDate={selectedDate} onDateChange={handleDateChange} />
+          <EventForm selectedDate={selectedDate} />
+        </div>
+        <div style={{ 
+          flex: '1', 
+          minWidth: '300px', 
+          boxSizing: 'border-box'
+        }}>
+          <EventList selectedDate={selectedDate} />
+        </div>
+      </div>
     </div>
   );
 };
