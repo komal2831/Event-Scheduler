@@ -21,6 +21,7 @@ const CalendarComponent: React.FC<CalendarProps> = ({ selectedDate, onDateChange
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
+      {/* To load Calandar */}
       <Calendar
         onChange={handleDateChange}
         value={selectedDate}

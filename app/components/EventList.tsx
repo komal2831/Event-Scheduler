@@ -1,6 +1,6 @@
 
 
-
+import './EventTable.css';
 interface EventListProps {
   events: { date: Date; description: string }[];
   selectedDate: Date;
@@ -14,15 +14,40 @@ const EventList: React.FC<EventListProps> = ({ events, selectedDate, onEditEvent
   );
 
   return (
-    <div>
-      {filteredEvents.map((event, index) => (
-        <div key={index}>
-          <span>{event.description}</span>
-          <button onClick={() => onEditEvent(index, prompt('Edit event:', event.description) || '')}>Edit</button>
-          <button onClick={() => onDeleteEvent(index)}>Delete</button>
-        </div>
-      ))}
+    // Event List form
+    <div className="event-table-container">
+    <div className="table-header">
+      <h2>Event List</h2>
     </div>
+    <div className="table-scroll">
+      {filteredEvents.length === 0 ? (
+        <p className="no-events">No events found</p>
+      ) : (
+        <table className="event-table">
+          {/* Table header  */}
+          <thead>
+            <tr>
+              <th className="description-header">Description</th>
+              <th className="actions-header">Actions</th>
+            </tr>
+          </thead>
+
+          {/* table Events data */}
+          <tbody>
+            {filteredEvents.map((event, index) => (
+              <tr key={index}>
+                <td className="description-cell">{event.description}</td>
+                <td className="actions-cell">
+                  <button className="edit-button" onClick={() => onEditEvent(index, prompt('Edit event:', event.description) || '')}>Edit</button>
+                  <button className="delete-button" onClick={() => onDeleteEvent(index)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  </div>
   );
 };
 
