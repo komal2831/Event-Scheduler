@@ -11,12 +11,12 @@ const EventList: React.FC<EventListProps> = ({ selectedDate }) => {
   const events = useSelector((state: RootState) => state.events.events);
   const dispatch: AppDispatch = useDispatch();
 
-  const filteredEvents = events.filter(
-    (event) => event.date.toDateString() === selectedDate.toDateString()
-  );
+  // const filteredEvents = events.filter(
+  //   (event) => event.date.toDateString() == selectedDate.toDateString()
+  // );
 
   const handleEditEvent = (index: number) => {
-    const newDescription = prompt('Edit event:', filteredEvents[index].description);
+    const newDescription = prompt('Edit event:', events[index].description);
     if (newDescription !== null && newDescription.trim() !== '') {
       dispatch(editEvent({ index, newDescription }));
     }
@@ -34,7 +34,7 @@ const EventList: React.FC<EventListProps> = ({ selectedDate }) => {
         <h2>Event List</h2>
       </div>
       <div className="table-scroll">
-        {filteredEvents.length === 0 ? (
+        {events.length === 0 ? (
           <p className="no-events">No events found</p>
         ) : (
           <table className="event-table">
@@ -45,7 +45,7 @@ const EventList: React.FC<EventListProps> = ({ selectedDate }) => {
               </tr>
             </thead>
             <tbody>
-              {filteredEvents.map((event, index) => (
+              {events.map((event, index) => (
                 <tr key={index}>
                   <td className="description-cell">{event.description}</td>
                   <td className="actions-cell">
