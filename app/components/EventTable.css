@@ -65,4 +65,37 @@
     padding: 20px;
     color: #666; 
   }
+
+  /* EventTable.css */
+
+/* Add these styles for the EventForm component */
+
+.eventForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.eventFormTextarea {
+  width: 220px;
+  height: 20px;
+  padding: 8px;
+  resize: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.eventFormButton {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
   
