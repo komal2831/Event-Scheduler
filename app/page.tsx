@@ -8,6 +8,7 @@ import EventList from './components/EventList';
 import { setEvents } from './store/eventsSlice';
 import { RootState, AppDispatch } from './store/store';
 import { loadEvents, saveEvents } from './utils/storage';
+import './styles/globals.css'; 
 
 const Page = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
@@ -32,34 +33,13 @@ const Page = () => {
   };
 
   return (
-      <div style={{ 
-      display: 'flex', 
-      flexDirection: 'column', 
-      height: '100%', 
-      padding: '1rem', 
-      boxSizing: 'border-box' 
-    }}>
-      <div style={{ 
-        display: 'flex', 
-        flexDirection: 'row', 
-        flex: '1', 
-        marginBottom: '1rem', 
-        flexWrap: 'wrap' 
-      }}>
-        <div style={{ 
-          flex: '1', 
-          marginRight: '1rem', 
-          minWidth: '300px', 
-          boxSizing: 'border-box'
-        }}>
+    <div className="container">
+      <div className="content">
+        <div className="calendarContainer">
           <CalendarComponent selectedDate={selectedDate} onDateChange={handleDateChange} />
           <EventForm selectedDate={selectedDate} />
         </div>
-        <div style={{ 
-          flex: '1', 
-          minWidth: '300px', 
-          boxSizing: 'border-box'
-        }}>
+        <div className="eventListContainer">
           <EventList selectedDate={selectedDate} />
         </div>
       </div>
