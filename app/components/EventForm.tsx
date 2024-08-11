@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addEvent } from '../store/eventsSlice';
 import { AppDispatch } from '../store/store';
+import './EventTable.css';
 
 interface EventFormProps {
   selectedDate: Date;
@@ -29,42 +30,14 @@ const EventForm: React.FC<EventFormProps> = ({ selectedDate }) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '10px',
-        width: '100%',
-        maxWidth: '450px',
-        margin: '0 auto',
-      }}
-    >
+    <form onSubmit={handleSubmit} className="eventForm">
       <textarea
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Event description"
-        style={{
-          width: '220px',
-          height: '20px',
-          padding: '8px',
-          resize: 'none',
-          marginTop: '10px',
-          marginBottom: '10px',
-        }}
+        className="eventFormTextarea"
       />
-      <button
-        type="submit"
-        style={{
-          backgroundColor: 'blue',
-          color: 'white',
-          border: 'none',
-          padding: '10px 20px',
-          borderRadius: '4px',
-          cursor: 'pointer',
-        }}
-      >
+      <button type="submit" className="eventFormButton">
         Add Event
       </button>
     </form>
